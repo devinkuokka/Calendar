@@ -81,4 +81,5 @@ table{
 td {
     height: 75px;
     width: calc(100%/7);
+    min-width: 80 px;
 }
