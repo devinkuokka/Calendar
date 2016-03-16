@@ -18,7 +18,7 @@ body {
 }
 
 #header {
-    height: 100px;
+    height: 75px;
     width: 100%;
     
     position: relative;
@@ -34,7 +34,7 @@ body {
 }
 
 #main {
-    height: calc(100% - 100px);
+    height: calc(100% - 75px);
     width: 100%;
 
     position: relative;
@@ -74,12 +74,22 @@ body {
 }
 
 table{
-    height: 100;
+    height: 95%;
     width: 100%;
 }
 
-td {
-    height: 75px;
+.weekday {
+    text-align: center;
+    height: 25px;
     width: calc(100%/7);
-    min-width: 80 px;
+}
+
+#monthly.week {
+    height:calc(100%/6);
+    width: calc(100%/7);
+}
+
+#weekly.day {
+    height: 100%;
+    width: calc(100%/7);
 }
