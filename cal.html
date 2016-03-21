@@ -58,7 +58,7 @@
                         var row = table.insertRow(tableRow);
                         for (var i = 0; i < 7; i++){
                             var cell = row.insertCell(i);
-                            if (i==currentDay.getDay()) {
+                            if (i == currentDay.getDay()) {
                                 cell.innerHTML = currentDay.getDate();
                                 day = day + 1;
 								if (day <= maxDays){
@@ -73,7 +73,7 @@
 				function isLeapYear(year) {
 					if (year % 4 == 0) {
 						if (year % 100 == 0) {
-							if (year % 400 ==0) {
+							if (year % 400 == 0) {
 								return true;
 							} else {return false;}
 						} else {return true;}
@@ -83,8 +83,8 @@
             
             <div id = "cal">
                 
-                <table id = "monthly" border="1">
-                    <tr >
+                <table id = "monthly" border = "1">
+                    <tr>
                         <th>Sunday</th>
                         <th>Monday</th>
                         <th>Tuesday</th>
