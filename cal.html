@@ -30,7 +30,11 @@
                 
                 function populateCalendar() {
                     var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-                    var today = new Date();
+					var today = new Date(2015, 1);
+					if (isLeapYear(today.getFullYear())) {
+                        daysInMonth[1] = 29;
+                    }
+                    
                    
                     var table = document.getElementById("monthly");
                     var day = 1;
@@ -51,7 +55,17 @@
                         }
                         tableRow++;  
                     }   
-                }     
+                }
+				
+				function isLeapYear(year) {
+					if (year % 4 == 0) {
+						if (year % 100 == 0) {
+							if (year % 400 ==0) {
+								return true;
+							} else {return false;}
+						} else {return true;}
+					} else {return false;}
+				}
             </script>
             
             <div id = "cal">
