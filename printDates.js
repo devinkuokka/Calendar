@@ -24,7 +24,29 @@ $(document).ready(function() {
 		FRI: 5,
 		SAT: 6,
 	};
-
+	
+	var currentWeekday;
+	var currentDay;
+	var currentMonth;
+	var currentYear;
+	
+	var currentDoomsday = doomsday(currentYear);
+	var isCurrentLeapYear = isLeapYear(currentYear);
+	
+	var weekdayStart;
+	var daysInMonth;
+	var weeksInMonth;
+	
+	var prevWeekday;
+	var nextWeekday;
+	
+	var prevMonth;
+	var nextMonth;
+	
+	fetchDate();
+	setMonth(currentMonth);
+	printDates();
+	
 	function fetchDate() {
 		var xmlHttp = new XMLHttpRequest();
 		
@@ -43,8 +65,8 @@ $(document).ready(function() {
 		var currentMonthString = currentDate[2];
 		var currentYearString = currentDate[3];
 		
-		var currentDay = parseInt(currentDayString);
-		var currentYear = parseInt(currentYearString);
+		currentDay = parseInt(currentDayString);
+		currentYear = parseInt(currentYearString);
 		
 		switch (currentWeekdayString) {
 			case ("Sun"):
@@ -108,22 +130,8 @@ $(document).ready(function() {
 				currentMonth = Month.DEC;
 				break;
 		}
-	}
 	
-	var currentDoomsday = doomsday(currentYear);
-	var isCurrentLeapYear = isLeapYear(currentYear);
 	
-	var weekdayStart;
-	var daysInMonth;
-	
-	var prevWeekday;
-	var nextWeekday;
-	
-	var prevMonth;
-	var nextMonth;
-	
-	setMonth(currentMonth);
-	printDates();
 	
 	
 	//determines if leap year
@@ -255,54 +263,58 @@ $(document).ready(function() {
 				break;
 		}
 		
-		var weeksInMonth = Math.ceil((daysInMonth + weekdayStart) / 7);
+		weeksInMonth = Math.ceil((daysInMonth + weekdayStart) / 7);
 	}
 
 	function printDates() {
 		var x = 1;
 		var week = 0;
-		var currentWeekday = weekdayStart;
+		var weekday = weekdayStart;
 		
-		while (x <= daysInMonth) {
-			
-			var cellId = week + "." + weekday;
-			
-			document.getElementById(cellId).innerHTML = x;
-			
-			switch (currentWeekday) {
-				case (Weekday.SUN):
-					prevWeekday = Weekday.SAT;
-					nextWeekday = Weekday.MON;
-					break;
-				case (Weekday.MON):
-					prevWeekday = Weekday.SUN;
-					nextWeekday = Weekday.TUE;
-					break;
-				case (Weekday.TUE):
-					prevWeekday = Weekday.MON;
-					nextWeekday = Weekday.WED;
-					break;
-				case (Weekday.WED):
-					prevWeekday = Weekday.TUE;
-					nextWeekday = Weekday.THU;
-					break;
-				case (Weekday.THU):
-					prevWeekday = Weekday.WED;
-					nextWeekday = Weekday.FRI;
-					break;
-				case (Weekday.FRI):
-					prevWeekday = Weekday.THU;
-					nextWeekday = Weekday.SAT;
-					break;
-				case (Weekday.SAT):
-					prevWeekday = Weekday.FRI;
-					nextWeekday = Weekday.SUN;
-					week ++;
-					break;
-			}
-			
-			currentWeekday = nextWeekday;
-			x++;
-		}
+		var cellId = week + "." + weekday;
+		
+		
+		//while (x <= daysInMonth) {
+		//	
+		//	var cellId = week + "." + currentWeekday;
+		//	
+		//	document.getElementById(cellId).innerHTML = x;
+		//	
+		//	switch (currentWeekday) {
+		//		case (Weekday.SUN):
+		//			prevWeekday = Weekday.SAT;
+		//			nextWeekday = Weekday.MON;
+		//			break;
+		//		case (Weekday.MON):
+		//			prevWeekday = Weekday.SUN;
+		//			nextWeekday = Weekday.TUE;
+		//			break;
+		//		case (Weekday.TUE):
+		//			prevWeekday = Weekday.MON;
+		//			nextWeekday = Weekday.WED;
+		//			break;
+		//		case (Weekday.WED):
+		//			prevWeekday = Weekday.TUE;
+		//			nextWeekday = Weekday.THU;
+		//			break;
+		//		case (Weekday.THU):
+		//			prevWeekday = Weekday.WED;
+		//			nextWeekday = Weekday.FRI;
+		//			break;
+		//		case (Weekday.FRI):
+		//			prevWeekday = Weekday.THU;
+		//			nextWeekday = Weekday.SAT;
+		//			break;
+		//		case (Weekday.SAT):
+		//			prevWeekday = Weekday.FRI;
+		//			nextWeekday = Weekday.SUN;
+		//			week ++;
+		//			break;
+		//	}
+		//	
+		//	currentWeekday = nextWeekday;
+		//	x++;
+		//}
 	}
+	
 });
