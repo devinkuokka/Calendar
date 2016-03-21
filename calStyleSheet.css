@@ -21,16 +21,25 @@ body {
     height: 75px;
     width: 100%;
     
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
     background-color: #B3C2BF;
     color: #3B3A36;
     
     font-weight:bold;
     font-size: xx-large;
+}
+
+#viewButtons {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#userButtons{
+    position: relative;
+    display: flex;
+    align-items: right;
+    justify-content: right;
 }
 
 #main {
