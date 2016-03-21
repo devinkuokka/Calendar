@@ -4,6 +4,12 @@
     <meta charset = "utf-8"/>
     <title>Page Title</title>
     <link rel = "stylesheet" type = "text/css" href="calStyleSheet.css">
+    <!-- includes jQuery-->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- includes dataTables -->
+	<script src = "https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></script>
+	<script src = "https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    
 </head>
 <body>
     <div id = "wrapper">
@@ -18,107 +24,34 @@
                 Natigation <br>
                 Bar 
             </div>
+            
             <script>
-                document.addEventListener("DOMContentLoaded", fetchDate, false);
+                document.addEventListener("DOMContentLoaded", populateCalendar, false);
                 
-                var src = "http://classes.engineering.wustl.edu/cse330/content/weather_json.php"
-                
-                function fetchDate() {
-                    var xmlHttp = new XMLHttpRequest();
-                    
-                    xmlHttp.open("GET", src, true);
-                    xmlHttp.addEventListener("load", ajaxCallback, false);
-                    xmlHttp.send(null)
-                }
-                
-                function ajaxCallback(event){
-                    var jsonData = JSON.parse(event.target.responseText);
-    
-                    var dateString = jsonData.current.date;
-                    var dateSplit = dateString.split(" ");
-                    
-                    var weekday = dateSplit[0].slice(0,3);
-                    var day = dateSplit[1];
-                    var month = dateSplit[2];
-                    var year = dateSplit[3];
-                                        
-                    var weekNum = parseInt( parseInt(day) / 7 ) + 1;
-                    
-                    var dateId = weekday + weekNum
-                    
-                    
-                    
-                    var weekdays = ["Sun","Mon","Tue","Wed","Thu","Fri", "Sat"];
+                function populateCalendar() {
                     var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-                    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                    
-                    
-                    var startingWeekDay;
-                    for(var i = 0; i < weekdays.length;i+=1){
-                        if (weekdays[i]==weekday) {
-                            for(var j = i; j < 0; i-=1){
-                                if (j-weekNum-2 < 0){
-                                    var diff = weekNum-2-j;
-                                //code
-                                }
-                        
+                    var today = new Date();
+                   
+                    var table = document.getElementById("monthly");
+                    var day = 1;
+                    var currentDay = new Date(today.getFullYear(), today.getMonth(), day);
+                    var tableRow = 1;
+                    var maxDays = daysInMonth[today.getMonth()];
+                    while (day <= maxDays) {
+                        var row = table.insertRow(tableRow);
+                        for (var i = 0; i < 7; i++){
+                            var cell = row.insertCell(i);
+                            if (i==currentDay.getDay()) {
+                                cell.innerHTML = currentDay.getDate();
+                                day = day + 1;
+								if (day <= maxDays){
+									currentDay = new Date(currentDay.getFullYear(), currentDay.getMonth(), day);
+								}
+							}
                         }
-                        
-                            
-                
-                    
-                    var cWeekDay = weekDay
-                    for (var x = day; x > 0; x-=1) {
-                        for (var w = 6; w > 0; w-=1){
-                            if (cWeekDay == weekdays[w]) {
-                                if (cWeekday == "Sun") {
-                                    w = 7;
-                                }
-                                cWeekDay = weekdays[w-1];
-                            }
-                        }
-                    }
-                    
-                    var numDays = 0;
-                    for(var m = 0; m < months.length; m+=1){
-                        if (month == months[m]) {
-                            numDays = daysInMonth[m];
-                        }
-                    }
-                    
-                    
-                    for(var d = 1; d <= numDays; d+=1){
-                        var currentWeek = 1;
-                        for(var w = 0; w < weekdays.length;w+=1){
-                            
-                            
-                            dateId = cWeekDay+currentWeek;
-                            document.getElementById(dateId).innerHTML = d;
-                        }
-                        currentWeek+=1;
-                    }
-                    
-                    
-                    
-                    
-                    for (var week = weekNum; week < 6; week+=1) {
-                        document.getElementById(dateId).innerHTML = day;
-                        
-                    for (var week = 1; week < 6; week++) {
-                        
-                    }
-                    
-                    
-                    
-                    
-
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                        tableRow++;  
+                    }   
+                }     
             </script>
             
             <div id = "cal">
@@ -133,6 +66,7 @@
                         <th>Friday</th>
                         <th>Saturday</th>
                     </tr>
+                    <!--
                     <tr id = "1" class = "week">
                         <td id = "1.1"></td>
                         <td id = "1.2"></td>
@@ -187,6 +121,7 @@
                         <td id = "fri6"></td>
                         <td id = "sat6"></td>
                     </tr>
+                    -->
                     </table>
                 
             </div>
