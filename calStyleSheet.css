@@ -128,17 +128,8 @@ th {
     height: 20px;
 }
 
-tr {
+td {
     text-align: left;
-    width: calc(100%/7);
-}
-
-#tr {
-    height:calc(100%/6);
-    width: calc(100%/7);
-}
-
-#weekly.day {
-    height: 100%;
+    vertical-align: top;
     width: calc(100%/7);
 }
