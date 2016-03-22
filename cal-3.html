@@ -84,6 +84,7 @@
 				
 				
 				var selectedDate;
+				var currentDate;
 				var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 				var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 				
@@ -96,72 +97,79 @@
 				}
 				
 				// Populates dates for the month	
-				function populateMonth(date) {
-						document.getElementById("monthName").innerHTML = months[date.getMonth()]+", "+ date.getFullYear();
-						var day = daysInMonth[date.getMonth()];
-						var monthEnd = new Date(date.getFullYear(), date.getMonth(), day);
-						var currentDay = monthEnd;
+				function populateMonth(givenDay) {
+						document.getElementById("monthName").innerHTML = months[givenDay.getMonth()]+", "+ givenDay.getFullYear();
+						var day = daysInMonth[givenDay.getMonth()];
+						var tracker = new Date(givenDay.getFullYear(), givenDay.getMonth(), day); // starts of end of month
+						var weekstart;
 						while (day > 0) {
-							findWeekStart(currentDay, true);
+							weekStart = findWeekStart(tracker, true);
 							day = day-7;
-							currentDay = new Date(currentDay.getFullYear(), currentDay.getMonth(), day);
+							tracker = new Date(tracker.getFullYear(), tracker.getMonth(), day);
 						}
+						if (weekStart.getDate() < 7) {
+                            tracker = new Date(tracker.getFullYear(), tracker.getMonth(), 1);
+							findWeekStart(tracker, true);
+                        }
 					}
 					
 				// Populates dates for the week
-				function populateWeek(date) {
-						findWeekStart(date, false);
+				function populateWeek(givenDate) {
+						findWeekStart(givenDate, false);
 				}
 					
 				//finds the start of each week
-				function findWeekStart(referenceDay, forMonth) {
-						if (referenceDay.getDay() != 0){
-							if (referenceDay.getDate() < 6) { // if the week goes into the previous month
-								if (referenceDay.getMonth()==0) { //if the week goes into the previous year
-									var day = daysInMonth[11]-(referenceDay.getDay()-referenceDay.getDate());
-									var currentDay = new Date(referenceDay.getFullYear()-1, 11, day);
+				function findWeekStart(givenDate, forMonth) {
+					var weekStart;
+					var day;
+						if (givenDate.getDay() != 0){ // given day not the beginning of the the week
+							if (givenDate.getDate() < 6) { // if the week goes into the previous month
+								if (givenDate.getMonth()==0) { //if the week goes into the previous year
+									day = daysInMonth[11]-(Math.abs(givenDate.getDay()-givenDate.getDate()));
+									weekStart = new Date(givenDate.getFullYear()-1, 11, day);
 								} else { //if the week stays in the current year
-									var day = daysInMonth[referenceDay.getMonth()-1]-(referenceDay.getDay()-referenceDay.getDate());
-									var currentDay = new Date(referenceDay.getFullYear(), referenceDay.getMonth()-1, day);
+									day = daysInMonth[givenDate.getMonth()-1]-(Math.abs(givenDate.getDay()-givenDate.getDate()));
+									
+									weekStart = new Date(givenDate.getFullYear(), givenDate.getMonth()-1, day);
 								}
 							} else { // if the weeek stays in the current month
-								var day = referenceDay.getDate()-referenceDay.getDay();
-								var currentDay = new Date(referenceDay.getFullYear(), referenceDay.getMonth(), day);
+								day = Math.abs(givenDate.getDate()-givenDate.getDay());
+								weekStart = new Date(givenDate.getFullYear(), givenDate.getMonth(), day);
 							}
 						} else { // if referenceDay is the start of the week
-							var day = referenceDay.getDate();
-							currentDay = referenceDay;
+							day = givenDate.getDate();
+							weekStart = givenDate;
 						}
-						populate(currentDay, day, forMonth);
+						populate(weekStart, day, forMonth);
 					}
 					
 				// Populates the week or month with dates	
-				function populate(currentDay, day, forMonth) {
+				function populate(givenDay, day, forMonth) {
 						if (forMonth) {
 							var table = document.getElementById("monthly");
 						} else {
 							var table = document.getElementById("weekly");
 						}
 						var row = table.insertRow(1);
+						var tracker=givenDay;
 						for (var i = 0; i < 7; i++){
 							var cell = row.insertCell(i);
-							cell.innerHTML = currentDay.getDate();
+							cell.innerHTML = tracker.getDate();
 							day = day + 1;
-							if (day > daysInMonth[currentDay.getMonth()]) { // if we are at the end of the current month
-								if (currentDay.getMonth()==11) { // if we are going into the next year
+							if (day > daysInMonth[givenDay.getMonth()]) { // if we are at the end of the current month
+								if (givenDay.getMonth()==11) { // if we are going into the next year
 									day = 1;
-									currentDay = new Date(currentDay.getFullYear()+1, 1, day);
+									tracker = new Date(givenDay.getFullYear()+1, 1, day);
 								} else { // if we stay in the current year
 									day = 1;
-									currentDay = new Date(currentDay.getFullYear(), currentDay.getMonth()+1, day);
+									tracker = new Date(givenDay.getFullYear(), givenDay.getMonth()+1, day);
 								}
 							} else { //if we stay in the same month	
-								currentDay = new Date(currentDay.getFullYear(), currentDay.getMonth(), day);
+								tracker = new Date(givenDay.getFullYear(), givenDay.getMonth(), day);
 							}
 						}
+						return tracker;
 					}
-					
-				
 					
 				// shows week view when week button is pressed	
 				function showWeek() {
@@ -208,8 +216,7 @@
 						}
 						var day = document.getElementById("day").value;
 						var year = document.getElementById("year").value;
-						var selectedDate = new Date(year, month, day);
-						alert(selectedDate.getMonth());
+						selectedDate = new Date(year, month, day);
 						isLeapYear(selectedDate.getFullYear());						
 						showMonth();
 						populateMonth(selectedDate);
@@ -272,7 +279,6 @@
                     }
 					
 					function nextMonth() {
-							alert(selectedDate);
 							if (selectedDate.getMonth() == 11) { // if the next month goes into the next year
                                 selectedDate = new Date(selectedDate.getFullYear()+1, 1, 1);
                             } else { 
