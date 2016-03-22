@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#container{
+    height: 100%;
+    width: 100%;
+}
+
+#header{
+    height: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#main{
+    height: calc(100% - 50px);
+}
+
+#nav{
+    height: 100%;
+}
+
+#cal{
+    height: 100%;
+}
+
+table{
+    height: 98%;
+    width: 100%;
+}
+
+th{
+    text-align: center;
+    height: 20px;
+}
+
+td{
+    text-align: justify;
+    vertical-align: top;
+    width: calc(100%/7);
+}

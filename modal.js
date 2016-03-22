@@ -7,10 +7,10 @@ var modal = (function(){
     $close;
 
     // Append the HTML
-    $overlay = $('<div id="overlay"></div>');
-    $modal = $('<div id="modal"></div>');
-    $content = $('<div id="content"></div>');
-    $close = $('<a id="close" href="#">close</a>');
+    $overlay = $('<div id = "overlay"></div>');
+    $modal = $('<div id = "modal"></div>');
+    $content = $('<div id = "content"></div>');
+    $close = $('<a id = "close" href = "#">close</a>');
     
     $modal.hide();
     $overlay.hide();
