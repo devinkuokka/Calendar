@@ -39,6 +39,7 @@ function populate(currentDay, day, forMonth) {
 	var row = table.insertRow(1);
 	for (var i = 0; i < 7; i++){
 		var cell = row.insertCell(i);
+		cell.id = currentDay.getMonth() + "." + currentDay.getDate();
 		cell.innerHTML = currentDay.getDate();
 		day = day + 1;
 		if (day > daysInMonth[currentDay.getMonth()]) { // if we are at the end of the current month
