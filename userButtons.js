@@ -1,14 +1,24 @@
 $(document).ready(function() {
-	$("#loginButton").click(function(){
-		modal.open({content: "login.html"});
+	$("#loginSubmit").click(function(){
+		var userVal = $('#loginUser').val();
+		var passVal = $('#loginPass').val();
+		
 	});
 	
-	$("#logoutButton").click(function(){
-			session_start();
-			session_destroy();				//logs user out
+	$("#logoutSubmit").click(function(){
+		
 	});
-			
-	$("#signupButton").click(function(){
-		$("#signupForm").show();
+	
+	$("#signupSubmit").click(function(){
+		var userVal = $('#signupUser').val();
+		var passVal = $('#signupPass').val();
+		var cpassVal = $('#signupCPass').val();
+		
+		return {
+			userVal: userVal,
+			passVal: passVal,
+			cpassVal: cpassVal			
+		};
 	});
+
 });

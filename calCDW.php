@@ -1,81 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset = "utf-8"/>
-    <title>Calendar</title>
-    
-	<link rel = "stylesheet" type = "text/css" href="calStyleSheet.css">
+	<title>Calendar</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href="styleSheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="populateCal.js"></script>
 	
-	<!-- includes jQuery-->
-	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	
-	<!-- includes dataTables
-	<script src = "https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></script>
-	<script src = "https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-	-->
 </head>
 
 <body>
-    <div id = "wrapper">
-        
-		
-		
-		
-        <div id = "header">
-			
-			<div id = "viewButtons">	
-				<button id = weekButton class = viewButton type = "button">Week</button>
-				<button id = monthButton class = viewButton  type = "button">Month</button>
-				<button id = yearButton class = viewButton type = "button">Year</button>
-				
-				<script src = "viewButtons.js"></script>
-			</div>
-			
-			
-			
-			
-			
-			
-			
-			<div id = "userButtons">	
-				<button id = loginButton class = userButton type = "button">Login</button>
-					
-				<button id = logoutButton class = userButton type = "button">Logout</button>
-				
-				<button id = signupButton class = userButton type = "button">Sign Up</button>
-				
-				<?php require "php_database.php"; ?>
-				<script src = "userButtons.js"></script>
-				<script src = "login.js"></script>
-			</div>
-			
-        </div>
-        
-        <div id = "main">
-            
-            <div id = "nav">
-                Natigation <br>
-                Bar 
-            </div>
-            
-            <script></script>
-            
-            <div id = "cal">
 
-				<div id = "weekly">
-					<?php include_once "weekly.html"; ?>
-                </div>
-				
-				<div id = "monthly" style = "display:none;">
-					<?php include_once "monthly.html"; ?>
-                </div>
-				
-				<div id = "yearly" style = "display:none;">
-					<?php include_once "yearly.html"; ?>
-                </div>
-            </div>
+	<div id="container" class="container-fluid">
+		<div id="header" class="row">
+			<br>
+			<div class="col-sm-4"></div>
 			
-        </div>
-    </div>
+			<div id="viewButtons" class="col-sm-4 text-center" >
+				<div class="btn-group">
+					<button type="button" class="btn btn-success btn-sm">
+						<span class="glyphicon glyphicon-triangle-left"></span>
+					</button>
+					<button id="weekButton" type="button" class="btn btn-success btn-sm">Week</button>
+					<button id="monthButton" type="button" class="btn btn-success btn-sm">Month</button>
+					<button id="yearButton" type="button" class="btn btn-success btn-sm">Year</button>
+					<button type="button" class="btn btn-success btn-sm">
+						<span class="glyphicon glyphicon-triangle-right"></span>
+					</button>
+				</div>
+			</div>
+			
+			<script src = "viewButtons.js"></script>
+
+			<div id="userButtons" class="col-sm-4 text-right">
+				<?php require_once "userButtons.php"?>
+			</div>
+			
+			<script src = "userButtons.js"></script>
+		</div>
+	  
+		<div id="main" class="row">
+			<div id="nav" class="col-sm-2">
+				Nav Bar
+			</div>
+			
+			<div id="cal" class="col-sm-10">
+				<?php require_once "calTable.html"?>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>
