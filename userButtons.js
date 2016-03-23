@@ -5,9 +5,7 @@ $(document).ready(function() {
 		
 	});
 	
-	$("#logoutSubmit").click(function(){
-		
-	});
+	
 	
 	$("#signupSubmit").click(function(){
 		var userVal = $('#signupUser').val();
@@ -20,5 +18,15 @@ $(document).ready(function() {
 			cpassVal: cpassVal			
 		};
 	});
-
+	
+	
+	//if logged in
+		//$("#loginButton").hide();
+		//$("#signupButton").hide();
+		//$("#logoutButton").show();
+	
+	
+	$("#logoutSubmit").click(function(){
+		
+	});
 });

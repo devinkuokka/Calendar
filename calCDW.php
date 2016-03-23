@@ -9,7 +9,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="populateCal.js"></script>
-	
+	<script src="addEvent.js"></script>	
 </head>
 
 <body>
@@ -17,38 +17,34 @@
 	<div id="container" class="container-fluid">
 		<div id="header" class="row">
 			<br>
-			<div class="col-sm-4"></div>
+			<div class="col-sm-2"></div> <!--blank-->
 			
-			<div id="viewButtons" class="col-sm-4 text-center" >
-				<div class="btn-group">
-					<button type="button" class="btn btn-success btn-sm">
-						<span class="glyphicon glyphicon-triangle-left"></span>
-					</button>
-					<button id="weekButton" type="button" class="btn btn-success btn-sm">Week</button>
-					<button id="monthButton" type="button" class="btn btn-success btn-sm">Month</button>
-					<button id="yearButton" type="button" class="btn btn-success btn-sm">Year</button>
-					<button type="button" class="btn btn-success btn-sm">
-						<span class="glyphicon glyphicon-triangle-right"></span>
-					</button>
-				</div>
+			<div id="viewButtons" class="col-sm-4" >
+				<?php require_once "viewButtons.html"?>
+				<script src="viewButtons.js"></script>
 			</div>
 			
-			<script src = "viewButtons.js"></script>
+			<div id="title" class="col-sm-2 text-center">
+				<h3 id="monthName"></h3>
+			</div>
 
 			<div id="userButtons" class="col-sm-4 text-right">
 				<?php require_once "userButtons.php"?>
+				<script src = "userButtons.js"></script>
 			</div>
-			
-			<script src = "userButtons.js"></script>
 		</div>
 	  
 		<div id="main" class="row">
 			<div id="nav" class="col-sm-2">
-				Nav Bar
+				<?php require_once "navMonthly.html"?>
 			</div>
 			
 			<div id="cal" class="col-sm-10">
-				<?php require_once "calTable.html"?>
+				<?php
+					require_once "calTable.html";
+					require_once "addEvent.php";
+				?>
+				
 			</div>
 		</div>
 	</div>

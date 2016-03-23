@@ -35,28 +35,6 @@
 	</div>
 </div>
 
-<!-- logout button that triggers logout modal -->
-<button id="logoutButton" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#logoutModal">Logout</button>
-
-<!-- logout modal -->
-<div id="logoutModal" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-		<!-- modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			
-			<div class="modal-body">
-				<p style="text-align: left">Are you sure you want to logout?</p>
-			</div>
-			
-			<div class="modal-footer">
-				<button id="logoutSubmit" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
-			</div>
-		</div>
-	</div>
-</div>
 				
 <!-- signup button that triggers signup modal-->
 <button id="signupButton" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#signupModal">Sign Up</button>
@@ -97,6 +75,30 @@
 			
 			<div class="modal-footer">
 				<button id="signupSubmit" type="button" class="btn btn-default" data-dismiss="modal">Create Account</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- logout button that triggers logout modal -->
+<button id="logoutButton" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#logoutModal" style="display:none">Logout</button>
+
+<!-- logout modal -->
+<div id="logoutModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			
+			<div class="modal-body">
+				<p style="text-align: left">Are you sure you want to logout?</p>
+			</div>
+			
+			<div class="modal-footer">
+				<button id="logoutSubmit" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
 			</div>
 		</div>
 	</div>
