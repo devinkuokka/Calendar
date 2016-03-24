@@ -19,34 +19,17 @@
 			<br>
 			<div class="col-sm-2"></div> <!--blank-->
 			
-			<div id="visibleMonth"></div>
-			
-			<div id="viewButtons" class="col-sm-4 text-center" >
-				<div class="btn-group">
-					<button id = "prev" type="button" class="btn btn-success btn-sm">
-						<span class="glyphicon glyphicon-triangle-left"></span>
-					</button>
-					<button id="weekButton" type="button" class="btn btn-success btn-sm">Week</button>
-					<button id="monthButton" type="button" class="btn btn-success btn-sm">Month</button>
-					<button id="yearButton" type="button" class="btn btn-success btn-sm">Year</button>
-					<button id = "next" type="button" class="btn btn-success btn-sm">
-						<span class="glyphicon glyphicon-triangle-right"></span>
-					</button>
-				</div>
-			</div>
-			
-			<script src="popCal.js"></script>
-			<!--<script src = "viewButtons.js"></script>-->
-
+			<script src = "viewButtons.js"></script>
 			<div id="viewButtons" class="col-sm-4" >
 				<?php require_once "viewButtons.html"?>
-				<script src="viewButtons.js"></script>
+				<!--<script src="viewButtons.js"></script>-->
 			</div>
 			
 			<div id="title" class="col-sm-2 text-center">
 				<h3 id="monthName"></h3>
 			</div>
 
+			
 
 			<div id="userButtons" class="col-sm-4 text-right">
 				<?php require_once "userButtons.php"?>
@@ -57,6 +40,7 @@
 		<div id="main" class="row">
 			<div id="nav" class="col-sm-2">
 				<?php require_once "navMonthly.html"?>
+				<!--<script src = "popLittleCal.js"></script>-->
 			</div>
 			
 			<div id="cal" class="col-sm-10">
@@ -69,5 +53,6 @@
 		</div>
 	</div>
 
+	<script src="populateCals.js"></script>
 </body>
 </html>

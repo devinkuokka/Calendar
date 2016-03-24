@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", setInitial, false);
 document.getElementById("weekButton").addEventListener("click", showWeek, false);
 document.getElementById("monthButton").addEventListener("click", showMonth, false);
-document.getElementById("prev").addEventListener("click", prev, false);
-document.getElementById("next").addEventListener("click", next, false);
+document.getElementById("prevButton").addEventListener("click", prev, false);
+document.getElementById("nextButton").addEventListener("click", next, false);
 
 var selectedDate;
 var currentDate;
@@ -16,24 +16,24 @@ function setInitial(){
 	selectedDate=currentDate;
 	
 	monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-	months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-	view = "month"
-	
-	populateMonth();
+	months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	view = "month";
+	populateMonth("monthly");
+	populateMonth("littleMonthly");
 	populateWeek();
 }
 
 // Populates a month	
-function populateMonth() {
-	document.getElementById("visibleMonth").innerHTML = months[selectedDate.getMonth()]+", "+ selectedDate.getFullYear();
+function populateMonth(cal) {
+	document.getElementById("monthName").innerHTML = months[selectedDate.getMonth()]+", "+ selectedDate.getFullYear();
 	for (var d = monthDays[selectedDate.getMonth()]; d > 0; d-=7) {
 		var tracker = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), d);
-		populateCal("monthly", weekStart(tracker));
+		populateCal(cal, weekStart(tracker));
 	}
 	var ws = weekStart(tracker);
 	if (ws.getDate() != 1 && ws.getMonth() != selectedDate.getMonth()-1){
 		tracker = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), tracker.getDate()-6);
-		populateCal("monthly", weekStart(tracker));
+		populateCal(cal, weekStart(tracker));
     }
 }
 
@@ -91,12 +91,12 @@ function prev() {
 		selectedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()-7);
 		showWeek();
 		populateWeek();
-		populateMonth();
+		populateMonth("monthly");
     } else {
 		selectedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth()-1, 1);
 		showMonth();
 		populateWeek();
-		populateMonth();
+		populateMonth("monthly");
 	}
 }
 
@@ -108,12 +108,12 @@ function next() {
 		selectedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()+7);
 		showWeek();
 		populateWeek();
-		populateMonth();
+		populateMonth("monthly");
     } else {
 		selectedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth()+1, 1);
 		showMonth();
 		populateWeek();
-		populateMonth();
+		populateMonth("monthly");
 	}
 }
 
