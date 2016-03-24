@@ -3,43 +3,50 @@ document.getElementById("weekButton").addEventListener("click", showWeek, false)
 document.getElementById("monthButton").addEventListener("click", showMonth, false);
 document.getElementById("prevButton").addEventListener("click", prev, false);
 document.getElementById("nextButton").addEventListener("click", next, false);
+document.getElementById("prevNavButton").addEventListener("click", prevNav, false);
+document.getElementById("nextNavButton").addEventListener("click", nextNav, false);
 
-var selectedDate;
+var mainDate;
+var navDate;
 var currentDate;
 var monthDays;
 var months;
 var view;
 
 function setInitial(){
-	selectedDate = new Date();
+	mainDate = new Date();
 	currentDate = new Date();
-	selectedDate=currentDate;
+	navDate = currentDate;
+	mainDate=currentDate;
+	
 	
 	monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 	months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	view = "month";
-	populateMonth("monthly");
-	populateMonth("littleMonthly");
-	populateWeek();
+	
+	populateMonth("monthly", mainDate);
+	populateMonth("littleMonthly", navDate);
+	populateWeek(mainDate);
 }
 
 // Populates a month	
-function populateMonth(cal) {
-	document.getElementById("monthName").innerHTML = months[selectedDate.getMonth()]+", "+ selectedDate.getFullYear();
-	for (var d = monthDays[selectedDate.getMonth()]; d > 0; d-=7) {
-		var tracker = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), d);
+function populateMonth(cal, date) {
+	document.getElementById("monthName").innerHTML = months[mainDate.getMonth()]+", "+ mainDate.getFullYear();
+	document.getElementById("navMonthName").innerHTML = months[navDate.getMonth()]+", "+ navDate.getFullYear();
+	for (var d = monthDays[date.getMonth()]; d > 0; d-=7) {
+		var tracker = new Date(date.getFullYear(), date.getMonth(), d);
 		populateCal(cal, weekStart(tracker));
 	}
 	var ws = weekStart(tracker);
-	if (ws.getDate() != 1 && ws.getMonth() != selectedDate.getMonth()-1){
-		tracker = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), tracker.getDate()-6);
+	if (ws.getDate() != 1 && ws.getMonth() != date.getMonth()-1){
+		tracker = new Date(date.getFullYear(), date.getMonth(), tracker.getDate()-6);
 		populateCal(cal, weekStart(tracker));
     }
 }
 
 //populates a week
-function populateWeek() {
-	populateCal("weekly", weekStart(selectedDate));
+function populateWeek(date) {
+	populateCal("weekly", weekStart(date));
 }
 
 //finds the start of the week for a given day
@@ -88,15 +95,15 @@ function prev() {
 	clearTable("weekly");
 	clearTable("monthly");
 	if (view=="week") {
-		selectedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()-7);
+		mainDate = new Date(mainDate.getFullYear(), mainDate.getMonth(), mainDate.getDate()-7);
 		showWeek();
-		populateWeek();
-		populateMonth("monthly");
+		populateWeek(mainDate);
+		populateMonth("monthly", mainDate);
     } else {
-		selectedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth()-1, 1);
+		mainDate = new Date(mainDate.getFullYear(), mainDate.getMonth()-1, 1);
 		showMonth();
-		populateWeek();
-		populateMonth("monthly");
+		populateWeek(mainDate);
+		populateMonth("monthly", mainDate);
 	}
 }
 
@@ -105,16 +112,29 @@ function next() {
 	clearTable("weekly");
 	clearTable("monthly");
 	if (view=="week") {
-		selectedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()+7);
+		mainDate = new Date(mainDate.getFullYear(), mainDate.getMonth(), mainDate.getDate()+7);
 		showWeek();
-		populateWeek();
-		populateMonth("monthly");
+		populateWeek(mainDate);
+		populateMonth("monthly", mainDate);
     } else {
-		selectedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth()+1, 1);
+		mainDate = new Date(mainDate.getFullYear(), mainDate.getMonth()+1, 1);
 		showMonth();
-		populateWeek();
-		populateMonth("monthly");
+		populateWeek(mainDate);
+		populateMonth("monthly", mainDate);
 	}
+}
+
+function prevNav() {
+	clearTable("littleMonthly");
+	navDate = new Date(navDate.getFullYear(), navDate.getMonth()-1, 1);
+	populateMonth("littleMonthly", navDate);
+}
+
+//goes to the next month or week
+function nextNav() {
+	clearTable("littleMonthly");
+	navDate = new Date(navDate.getFullYear(), navDate.getMonth()+1, 1);
+	populateMonth("littleMonthly", navDate);
 }
 
 
@@ -137,9 +157,9 @@ function next() {
 //	}
 //	var day = document.getElementById("day").value;
 //	var year = document.getElementById("year").value;
-//	selectedDate = new Date(year, month, day);
-//	isLeapYear(selectedDate.getFullYear());						
+//	mainDate = new Date(year, month, day);
+//	isLeapYear(mainDate.getFullYear());						
 //	showMonth();
-//	populateMonth(selectedDate);
-//	populateWeek(selectedDate);
+//	populateMonth(mainDate);
+//	populateWeek(mainDate);
 //}
