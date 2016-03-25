@@ -17,33 +17,33 @@
 	<div id="container" class="container-fluid">
 		<div id="header" class="row">
 			<br>
-			<div class="col-sm-2"></div> <!--blank-->
+			<div class="col-xs-2"></div> <!--blank-->
 			
 			<script src = "viewButtons.js"></script>
-			<div id="viewButtons" class="col-sm-4" >
+			<div id="viewButtons" class="col-xs-3" >
 				<?php require_once "viewButtons.html"?>
 				<!--<script src="viewButtons.js"></script>-->
 			</div>
 			
-			<div id="title" class="col-sm-2 text-center">
+			<div id="title" class="col-xs-4 text-center">
 				<h3 id="monthName"></h3>
 			</div>
 
-			
-
-			<div id="userButtons" class="col-sm-4 text-right">
+			<div id="userButtons" class="col-xs-3 text-right">
 				<?php require_once "userButtons.php"?>
 				<script src = "userButtons.js"></script>
 			</div>
 		</div>
 	  
 		<div id="main" class="row">
-			<div id="nav" class="col-sm-2">
-				<?php require_once "navMonthly.html"?>
-				<!--<script src = "popLittleCal.js"></script>-->
+			<div id="nav" class="col-xs-2">
+				<div id="littleCal" class="row">
+					<?php require_once "navMonthly.html"?>
+					<!--<script src = "popLittleCal.js"></script>-->
+				</div>
 			</div>
 			
-			<div id="cal" class="col-sm-10">
+			<div id="cal" class="col-xs-10">
 				<?php
 					require_once "calTable.html";
 					require_once "addEvent.php";

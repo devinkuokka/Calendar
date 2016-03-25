@@ -62,6 +62,7 @@ function populateCal(cal, date) {
 	var tracker=date;
 	for (var i = 0; i < 7; i++){
 		var cell = row.insertCell(i);
+		cell.id =  date.getMonth() + "." + tracker.getDate();
 		cell.innerHTML = tracker.getDate();
 		tracker = new Date(date.getFullYear(), date.getMonth(), tracker.getDate()+1);
 	}
