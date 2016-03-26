@@ -4,9 +4,7 @@ $(document).ready(function() {
 		var passVal = $('#loginPass').val();
 		
 	});
-	
-	
-	
+
 	$("#signupSubmit").click(function(){
 		var userVal = $('#signupUser').val();
 		var passVal = $('#signupPass').val();
@@ -19,14 +17,12 @@ $(document).ready(function() {
 		};
 	});
 	
-	
 	//if logged in
 		//$("#loginButton").hide();
 		//$("#signupButton").hide();
 		//$("#logoutButton").show();
 	
-	
 	$("#logoutSubmit").click(function(){
-		
+		//destroy session
 	});
 });

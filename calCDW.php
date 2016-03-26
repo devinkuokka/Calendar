@@ -39,7 +39,6 @@
 			<div id="nav" class="col-xs-2">
 				<div id="littleCal" class="row">
 					<?php require_once "navMonthly.html"?>
-					<!--<script src = "popLittleCal.js"></script>-->
 				</div>
 			</div>
 			
