@@ -1,18 +1,24 @@
 <?php
-    
-	$username = $_POST['username'];			
-	$passwordHash = password_hash($_POST['password'],PASSWORD_DEFAULT);
+	
+	if (!isset ($_POST['username']) || !isset ($_POST['password']) || !isset ($_POST['confirmPassword'])) {
+		echo "Please enter all fields";
+		exit;
+	}
+	
+	$username = $_POST['username'];
+	$passwordHash = password_hash($_POST['password'],PASSWORD_BCRYPT);
 	$confirmPassword = $_POST['confirmPassword'];
+	
 	//check that username is valid
 	
 	
 	//check that password and confirm password match
-	if (password_verify('$confirmPassword', $passwordHash)) {
-		echo "<p>Passwords do not match. Please try again.</p>";
+	if (!password_verify($confirmPassword, $passwordHash)) {
+		echo "Passwords do not match. Please try again.";
 		exit;
 	}
 	
-	//conect to mod3_newsWebsite as php_user		
+	//conect to cal database as php_user		
 	require 'php_database.php';
 	
 	$isNewUser = $mysqli -> prepare ("select username
@@ -28,11 +34,11 @@
 	$isNewUser -> bind_result($usernameResult);
 	$isNewUser -> fetch();
 	$isNewUser -> close();
-
+	
 	
 	//check that username is unique
 	if ($usernameResult !== null) {
-		echo "<p>Username is already taken. Please try another.</p>";
+		echo "Username is already taken. Please try another.";
 		exit;
 	} 
 	
@@ -47,7 +53,9 @@
 	$addUser -> bind_param ('ss', $username, $password);
 	$addUser -> execute();
 	$addUser -> close();
-
+	
+	echo ("Successfully added ".$username);
+	
 	$_SESSION['username'] = $username;				//creates and sets the session variable, username
-	}
+	
 ?>

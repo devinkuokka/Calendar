@@ -2,7 +2,6 @@ $(document).ready(function() {
 	$("#loginSubmit").click(function(){
 		var userVal = $('#loginUser').val();
 		var passVal = $('#loginPass').val();
-		
 	});
 
 	$("#signupSubmit").click(function(){
@@ -10,11 +9,21 @@ $(document).ready(function() {
 		var passVal = $('#signupPass').val();
 		var cpassVal = $('#signupCPass').val();
 		
-		return {
-			userVal: userVal,
-			passVal: passVal,
-			cpassVal: cpassVal			
-		};
+		//if (userVal == "" || passVal == "" || cpassVal == "") {
+        //    alert("Please enter all fields");
+        //} else if (passVal != cpassVal) {
+        //    alert("Passwords do not match. Try again.");
+        //}
+        $.ajax({
+            type: "POST",
+            url: "signup.php", //This is the current doc
+            //dataType:'json', // add json datatype to get json
+            data: { username: userVal, password: passVal, confirmPassword: cpassVal},
+            //data: {data: userVal},
+            success: function(msg){
+                alert(msg);
+            }
+        });  
 	});
 	
 	//if logged in
