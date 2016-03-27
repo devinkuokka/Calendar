@@ -13,6 +13,8 @@
 </head>
 
 <body>
+	
+	<p id = "session_username" ></p>
 
 	<div id="container" class="container-fluid">
 		<div id="header" class="row">

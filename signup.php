@@ -54,8 +54,8 @@
 	$addUser -> execute();
 	$addUser -> close();
 	
-	echo ("Successfully added ".$username);
-	
 	$_SESSION['username'] = $username;				//creates and sets the session variable, username
+	
+	echo ($_SESSION['username']);
 	
 ?>

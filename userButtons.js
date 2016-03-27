@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	$("#loginSubmit").click(function(){
 		var userVal = $('#loginUser').val();
 		var passVal = $('#loginPass').val();
@@ -9,7 +10,7 @@ $(document).ready(function() {
             data: { username: userVal, password: passVal},
             //data: {data: userVal},
             success: function(msg){
-                alert(msg);
+                $('#session_username').text(msg);
             }
         });
 	});
@@ -31,7 +32,7 @@ $(document).ready(function() {
             data: { username: userVal, password: passVal, confirmPassword: cpassVal},
             //data: {data: userVal},
             success: function(msg){
-                alert(msg);
+                $('#session_username').text(msg);
             }
         });  
 	});

@@ -30,9 +30,9 @@
 		echo "Invalid Login. Please try again.";
 		exit;
 	}
-	
-	echo "login successful";
 				
 	$_SESSION['username'] = $username;				//creates and sets the session variable, username
+	
+	echo $_SESSION['username'];
 	
 ?>
