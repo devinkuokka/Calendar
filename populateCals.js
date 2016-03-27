@@ -62,8 +62,10 @@ function populateCal(cal, date) {
 	var tracker=date;
 	for (var i = 0; i < 7; i++){
 		var cell = row.insertCell(i);
+		cell.id =  tracker.getFullYear() + "." + (tracker.getMonth()+1) + "." + tracker.getDate();
+		cell.onchange = "enableTxt(this)";
 		cell.innerHTML = tracker.getDate();
-		tracker = new Date(date.getFullYear(), date.getMonth(), tracker.getDate()+1);
+		tracker = new Date(tracker.getFullYear(), tracker.getMonth(), tracker.getDate()+1);
 	}
 }
 
@@ -136,8 +138,6 @@ function nextNav() {
 	navDate = new Date(navDate.getFullYear(), navDate.getMonth()+1, 1);
 	populateMonth("littleMonthly", navDate);
 }
-
-
 
 
 

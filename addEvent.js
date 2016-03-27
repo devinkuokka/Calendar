@@ -1,7 +1,14 @@
-$(document).ready(function() {
-	$('table tbody tr  td').on('click',function(){
+$(window).load(function(){
+	$('table td').on('click',function(){
 		$("#addEvent").modal("show");
-		//$("#eventDate").val($(this).closest('td').children()[0].textContent);
+		var cellId = ($(this).closest('td').attr('id')).split('.');
+		
+		var month = ("0" + cellId[1]).slice(-2);
+		var day = ("0" + cellId[2]).slice(-2);
+
+		cellDate = cellId[0] + "-" + month + "-" + day;
+
+		$("#eventDate").attr("value", cellDate);;
 	});
 });
 
