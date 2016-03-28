@@ -46,8 +46,50 @@
 				
 	$_SESSION['username'] = $username;				//creates and sets the session variable, username
 	
-	echo json_encode(array(
-			"success" => true,
-			"msg" => $username
-	));
+	//echo json_encode(array(
+	//		"success" => true,
+	//		"msg" => $username
+	//));
+	
+	$myArray = array(
+		"success" => true,
+		"msg" => $username,
+		);
+	
+	//Display events as soon as they log in
+	
+	$showEvent = $mysqli -> prepare ("select name, cat, date, start
+									 from events
+									 where creator = '$username'");
+	
+	if (!$showEvent) {
+		echo json_encode(array(
+				"success" => false,
+				"msg" => "Select Query Prep Failed"
+		));
+		exit;
+	}
+	
+	$result = $showEvent -> execute();
+	$showEvent -> bind_result($name, $cat, $date, $start);
+	//$showEvent -> fetch();
+	
+    while($row = mysqli_fetch_assoc($result, MYSQLI_ASSOC)){
+        array_push($myArray,$row);
+    }
+
+    //$json_array = json_encode($array);
+	//while ($showEvent -> fetchObject()) {
+	//	$eventArray = array (
+	//		"name" => $name;
+	//		"date" => $date,
+	//		"start" => $start,
+	//		"cat" => $cat
+	//	);
+	//	array_push ($myArray, $eventArray);
+	//};
+	
+	$showEvent -> close();
+	
+	echo json_encode($myArray);
 ?>

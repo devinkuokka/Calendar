@@ -1,33 +1,39 @@
 <?php
-	require "php_database.php";
-			
-	$showEvent = $mysqli -> prepare ("select name, day, month, year, start, end, cat
-									 where viewer = '$username'
-									 from events");
+	
+	//Display events as soon as they log in
+	
+	$showEvent = $mysqli -> prepare ("select what, date, start, end, cat
+									 from events
+									 where creator = '$username'");
 	
 	if (!$showEvent) {
-		printf("Select Query Prep Failed: %s\n", $mysqli -> error);
+		echo json_encode(array(
+				"success" => false,
+				"msg" => "Select Query Prep Failed"
+		));
 		exit;
 	}
 	
 	$showEvent -> execute();
-	$showEvent -> bind_result($name, $day, $month, $year, $start, $end, $cat);
+	$showEvent -> bind_result($name, $date, $start, $end, $cat);
 	
-	$myArray = array();
+	$myArray = array(
+		"success" => true,
+		"msg" => $username
+	);
 	
 	while ($showEvent -> fetch()) {
-		array_push ($myArray,
-			$name <= array(
-				"day" <= $day,
-				"month" <= $month,
-				"year" <= $year,
-				"start" <= $start,
-				"end" <= $end,
-				"cat" <= $cat
-			)
+		$eventArray = array (
+			"name" => $name;
+			"date" => $date,
+			"start" => $start,
+			"end" => $end,
+			"cat" => $cat
 		);
+		array_push ($myArray, $eventArray);
 	};
-
+	
 	$showEvent -> close();
+	
 	echo json_encode($myArray);
 ?>
