@@ -3,9 +3,9 @@ $(document).ready(function() {
 	$("#loginSubmit").click(function(){
 		var userVal = $('#loginUser').val();
 		var passVal = $('#loginPass').val();
-//		if (userVal == "" || passVal == "" || cpassVal == "") {
-//            alert("Please enter all fields");
-//        } else {
+		if (userVal == "" || passVal == "") {
+            alert("Please enter all fields");
+        } else {
 			$.ajax({
 				type: "POST",
 				url: "login.php", //This is the current doc
@@ -17,7 +17,7 @@ $(document).ready(function() {
 					$('#session_username').text(msg);
 				}
 			});
-		//}
+		}
 	});
 
 	$("#signupSubmit").click(function(){
