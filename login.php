@@ -1,6 +1,6 @@
-<?php		
+<?php
 
-	if (!isset ($_POST['username']) || !isset ($_POST['password'])) {		//checks a username & password were entered
+	if (!isset ($_POST['username']) && !isset ($_POST['password'])) {		//checks a username & password were entered
 		echo "Please enter all fields";
 		exit;
 	}
@@ -11,28 +11,29 @@
 	//conect to cal database as php_user
 	require 'php_database.php';
 				
-	$isUser = $mysqli -> prepare ("select username, password
+	$isUser = $mysqli -> prepare ("select password
 								  from users
-								  where username = '$username' and password = '$password'");
+								  where username = '$username'");
 				
 	if (!$isUser) {
-		echo "Select Query Prep Failed: %s\n", $mysqli -> error;
+		echo "Select Query Prep Failed: ", $mysqli -> error;
 		exit;
 	}
 				
 	$isUser -> execute();
-	$isUser -> bind_result($usernameResult, $passwordResult);
+	$isUser -> bind_result($passwordResult);
 	$isUser -> fetch();
 	$isUser -> close();
 				
 	//check that username and password are valid 
-	if ($usernameResult == null && password_verify($password, $passwordResult)) {
+	if (password_verify($password, $passwordResult)) {
 		echo "Invalid Login. Please try again.";
 		exit;
 	}
 				
 	$_SESSION['username'] = $username;				//creates and sets the session variable, username
-	
+	echo $usernameResult;
+	echo $passwordResult;
 	echo $_SESSION['username'];
 	
 ?>

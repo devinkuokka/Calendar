@@ -1,13 +1,14 @@
 <?php
 
 
-	if (!isset($_POST['creator'] || !isset($_POST['name'] || !isset($_POST['cat'] ||
-		!isset($_POST['month'] || !isset($_POST['day'] || !isset($_POST['year'] ||
-		!isset($_POST['start'] || !isset($_POST['end']) {
-				
-		echo ("Please enter all fields");
+	if (!isset($_POST['creator']) || !isset($_POST['cat']) || !isset($_POST['name']) || 
+		!isset($_POST['day']) || !isset($_POST['month']) || !isset($_POST['year']) ||
+		!isset($_POST['start']) || !isset($_POST['end'])) {
+		
+		echo "Please enter all fields";
 		exit;
 	}
+	
 	$creator = $_SESSION['creator'];
 	$name = $_POST['name'];
 	$month = $_POST['month'];
