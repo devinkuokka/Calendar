@@ -13,9 +13,7 @@ $(window).load(function(){
 	});
 
 	$('#eventSubmit').click(function(){
-		//var ecreator = $('#session_username').text();
 		var ecreator = username;
-		alert(ecreator);
 		var ename = $('#eventName').val();
 		var edate = $('#eventDate').val();
 		var ecat = $('#eventCat').val();
