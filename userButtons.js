@@ -11,8 +11,8 @@ $(document).ready(function() {
 				url: "login.php",
 				dataType:'json',
 				data: { username: userVal, password: passVal},
-				success: function(data){
-					var jsonData = $.parseJSON(data);
+				success: function(rtnData){
+					var jsonData = rtnData;//$.parseJSON(rtnData);
 					if (jsonData.success) {
 						username = jsonData.msg;
 						
@@ -43,8 +43,8 @@ $(document).ready(function() {
 				url: "signup.php",
 				dataType:'json', 
 				data: { username: userVal, password: passVal, confirmPassword: cpassVal},
-				success: function(data){
-					var jsonData = $.parseJSON(data);
+				success: function(rtnData){
+					var jsonData = rtnData;//JSON.parse(rtnData);
 					if (jsonData.success) {
 						username = jsonData.msg;
 						
