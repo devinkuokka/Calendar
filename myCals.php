@@ -6,7 +6,7 @@
 
 <div id="myCalsList" class="row">
 	<div class="col-xs-12">
-		<input id="myCalPersonal" type="checkbox" value="Personal"> Personal</input>
+		<input id="myCalPersonal" type="checkbox" value="Personal"> Personal
 	</div>
 </div>
 
@@ -35,7 +35,7 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="myCalName">Name:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="myCalName" placeholder="New calendar" maxlength="255" autocomplete = "off" required autofocus>
+							<input type="text" class="form-control" id="myCalName" placeholder="New calendar" maxlength="255" autocomplete="off" required/>
 						</div>
 					</div>
 				</form>
