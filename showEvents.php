@@ -2,7 +2,7 @@
 	
 	//Display events as soon as they log in
 	
-	$showEvent = $mysqli -> prepare ("select what, date, start, end, cat
+	$showEvent = $mysqli -> prepare ("select name, date, start, cat
 									 from events
 									 where creator = '$username'");
 	
@@ -15,7 +15,7 @@
 	}
 	
 	$showEvent -> execute();
-	$showEvent -> bind_result($name, $date, $start, $end, $cat);
+	$showEvent -> bind_result($name, $date, $start, $cat);
 	
 	$myArray = array(
 		"success" => true,
@@ -24,10 +24,9 @@
 	
 	while ($showEvent -> fetch()) {
 		$eventArray = array (
-			"name" => $name;
+			"name" => $name,
 			"date" => $date,
 			"start" => $start,
-			"end" => $end,
 			"cat" => $cat
 		);
 		array_push ($myArray, $eventArray);

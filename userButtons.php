@@ -31,6 +31,8 @@
 			<div class="modal-footer">
 				<button id="loginSubmit" type="submit" class="btn btn-default" data-dismiss="modal" value="Login">Login</button>
 			</div>
+			
+			<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 		</div>
 	</div>
 </div>
@@ -71,6 +73,8 @@
 							<input type="password" class="form-control" id="signupCPass" placeholder="Enter password again" maxlength="13" autocomplete="off" required>
 						</div>
 					</div>
+					
+					<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 				</form>
 			</div>
 			

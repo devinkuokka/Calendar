@@ -1,8 +1,17 @@
 <?php
-	error_reporting(-1);
-	ini_set('display_errors', 'On');
-	
+	ini_set("session.cookie_httponly", 1);
 	session_start();
+	
+	$previous_ua = @$_SESSION['useragent'];
+	$current_ua = $_SERVER['HTTP_USER_AGENT'];
+ 
+	if(isset($_SESSION['useragent']) && $previous_ua !== $current_ua){
+		die("Session hijack detected");
+	}else{
+		$_SESSION['useragent'] = $current_ua;
+	}
+	
+	$_SESSION['token'] = substr(md5(rand()), 0, 10); // generate a 10-character random string
 	
 	$username = $_POST['username'];			
 	$password = $_POST['password'];
