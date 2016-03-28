@@ -22,9 +22,9 @@ $(window).load(function(){
 		var estart = $('#eventStartTime').val();
 		var eend = $('#eventEndTime').val();
 		
-//		if (ecreator == "") {
-//            alert("Please login or make an account");
-//        } else {
+		if (ecreator == "") {
+            alert("Please login or make an account");
+        } else {
 			$.ajax({
 				type: "POST",
 				url: "addEventScript.php",
@@ -34,7 +34,7 @@ $(window).load(function(){
 					alert(msg);
 				}
 			});
-		//}
+		}
 	});
 });
 
