@@ -13,14 +13,14 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="eventName">What:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="eventName" placeholder="Event title" maxlength="255" autocomplete = "off" required autofocus>
+							<input type="text" class="form-control" id="eventName" placeholder="Event title" maxlength="255" autocomplete = "off" required >
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="eventWhen">When:</label>
+						<div class="control-label col-sm-2">When:</div>
 						<div id="eventWhen" class="col-sm-10">
-							<input id="eventDate" type="date" class="form-control" id="eventDate" required>
+							<input type="date" class="form-control" id="eventDate" required>
 							<input type="time" class="form-control" id="eventStartTime" required>
 							<input type="time" class="form-control" id="eventEndTime" required>
 							<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />

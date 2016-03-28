@@ -15,7 +15,7 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="loginUser">Username:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="loginUser" placeholder="Enter username" required autofocus>
+							<input type="text" class="form-control" id="loginUser" placeholder="Enter username" required>
 						</div>
 					</div>
 					
@@ -56,7 +56,7 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="signupUser">Username:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="signupUser" placeholder="Enter a username" maxlength="20" autocomplete="off" required autofocus>
+							<input type="text" class="form-control" id="signupUser" placeholder="Enter a username" maxlength="20" autocomplete="off" required>
 						</div>
 					</div>
 					
