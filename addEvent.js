@@ -14,7 +14,8 @@ $(window).load(function(){
 
 	$('#eventSubmit').click(function(){
 		//var ecreator = $('#session_username').text();
-		//var ecreator = "cdeanwolf";
+		var ecreator = username;
+		alert(ecreator);
 		var ename = $('#eventName').val();
 		var edate = $('#eventDate').val();
 		var ecat = $('#eventCat').val();
@@ -28,7 +29,7 @@ $(window).load(function(){
 				type: "POST",
 				url: "addEventScript.php",
 				//dataType:'json', // add json datatype to get json
-				data: { cat: ecat, name: ename, date: edate, start: estart, end: eend },
+				data: { creator: ecreator, cat: ecat, name: ename, date: edate, start: estart, end: eend },
 				success: function(msg){
 					alert(msg);
 				}
