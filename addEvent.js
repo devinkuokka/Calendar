@@ -28,7 +28,7 @@ $(window).load(function(){
 			$.ajax({
 				type: "POST",
 				url: "addEventScript.php",
-				//dataType:'json', // add json datatype to get json
+				dataType:'json',
 				data: { creator: ecreator, cat: ecat, name: ename, date: edate, start: estart, end: eend },
 				success: function(msg){
 					alert(msg);
