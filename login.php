@@ -1,7 +1,5 @@
 <?php
-	error_reporting(-1);
-	ini_set('display_errors', 'On');
-	
+	ini_set("session.cookie_httponly", 1);
 	session_start();
 	
 	$previous_ua = @$_SESSION['useragent'];
