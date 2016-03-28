@@ -64,9 +64,13 @@ function populateCal(cal, date) {
 	var tracker=date;
 	for (var i = 0; i < 7; i++){
 		var cell = row.insertCell(i);
-		cell.id =  tracker.getFullYear() + "-" + (tracker.getMonth()+1) + "-" + tracker.getDate();
-		cell.onchange = "enableTxt(this)";
-		cell.innerHTML = tracker.getDate();
+		if (cal == "monthly") {
+			var year = tracker.getFullYear();
+			var month = ("0" + (tracker.getMonth()+1)).slice(-2);
+			var day = ("0" + tracker.getDate()).slice(-2);
+			cell.id =  year + "-" + month + "-" + day;
+		}
+		cell.innerHTML = tracker.getDate() + "\n";
 		tracker = new Date(tracker.getFullYear(), tracker.getMonth(), tracker.getDate()+1);
 	}
 }

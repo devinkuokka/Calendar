@@ -1,15 +1,9 @@
 $(window).load(function(){
 	$('table td').on('click',function(){
 		$("#addEvent").modal("show");
-		var cellId = ($(this).closest('td').attr('id')).split('-');
-		
-		var year = cellId[0];
-		var month = ("0" + cellId[1]).slice(-2);
-		var day = ("0" + cellId[2]).slice(-2);
-	
-		cellDate = year + "-" + month + "-" + day;
-		
-		$("#eventDate").attr("value", cellDate);;	
+		var cellId = ($(this).closest('td').attr('id'));
+
+		$("#eventDate").attr("value", cellId);;	
 	});
 
 	$('#eventSubmit').click(function(){
@@ -28,8 +22,14 @@ $(window).load(function(){
 				url: "addEventScript.php",
 				dataType:'json',
 				data: { creator: ecreator, cat: ecat, name: ename, date: edate, start: estart, end: eend },
-				success: function(msg){
-					alert(msg);
+				success: function(rtnData){
+					if (rtnData.success) {
+						var cell = rtnData.cellId;
+						var event = "<li>" + rtnData.msg + "</li>";
+						$(cell).append(event);
+                    } else {
+						alert(rtnData.msg);
+					}
 				}
 			});
 		}
