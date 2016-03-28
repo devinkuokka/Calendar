@@ -15,6 +15,11 @@ $(document).ready(function() {
 					var jsonData = $.parseJSON(data);
 					if (jsonData.success) {
 						username = jsonData.msg;
+						
+						//show logout button and hide others
+						$("#loginButton").hide();
+						$("#signupButton").hide();
+						$("#logoutButton").show();
                     } else {
 						alert(jsonData.msg);
 					}
@@ -42,6 +47,11 @@ $(document).ready(function() {
 					var jsonData = $.parseJSON(data);
 					if (jsonData.success) {
 						username = jsonData.msg;
+						
+						//show logout button and hide others
+						$("#loginButton").hide();
+						$("#signupButton").hide();
+						$("#logoutButton").show();
                     } else {
 						alert(jsonData.msg);
 					}
@@ -49,11 +59,6 @@ $(document).ready(function() {
 			});
 		}
 	});
-	
-	//if logged in
-		//$("#loginButton").hide();
-		//$("#signupButton").hide();
-		//$("#logoutButton").show();
 	
 	$("#logoutSubmit").click(function(){
 		//destroy session
