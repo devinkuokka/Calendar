@@ -9,12 +9,15 @@ $(document).ready(function() {
 			$.ajax({
 				type: "POST",
 				url: "login.php",
-				//dataType:'json',
+				dataType:'json',
 				data: { username: userVal, password: passVal},
-				success: function(msg){
-					if (msg != "") {
-                        alert(msg);
-                    }
+				success: function(data){
+					var jsonData = $.parseJSON(data);
+					if (jsonData.success) {
+						alert (jsonData.msg);
+                    } else {
+						alert(jsonData.msg);
+					}
 				}
 			});
 		}

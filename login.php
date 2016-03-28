@@ -6,7 +6,10 @@
 	$password = $_POST['password'];
 	
 	if (strlen($username) < 4 || strlen($password) < 4) {
-		echo "Please enter a valid username and password";
+		echo json_encode(array(
+				"success" => false,
+				"msg" => "Please enter a valid username and/or password."
+		));
 		session_destroy();
 		exit;
 	}
@@ -19,7 +22,10 @@
 								  where username = '$username'");
 				
 	if (!$isUser) {
-		echo "Select Query Prep Failed: ", $mysqli -> error;
+		echo json_encode(array(
+				"success" => false,
+				"msg" => "Select Query Prep Failed: ", $mysqli -> error
+		));
 		session_destroy();
 		exit;
 	}
@@ -31,10 +37,18 @@
 				
 	//check that username and password are valid 
 	if ($usernameResult == null || !password_verify($password, $passwordResult)) {
-		echo "Invalid username and/or password.";
+		echo json_encode(array(
+				"success" => false,
+				"msg" => "Please enter a valid username and/or password."
+		));
 		session_destroy();
 		exit;
 	}
 				
 	$_SESSION['username'] = $username;				//creates and sets the session variable, username
+	
+	echo json_encode(array(
+			"success" => true,
+			"msg" => $username
+	));
 ?>
