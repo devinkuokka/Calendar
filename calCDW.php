@@ -40,6 +40,10 @@
 				<div id="littleCal" class="row">
 					<?php require_once "navMonthly.html"?>
 				</div>
+				
+				<div id="myCals" class="row">
+					<?php require_once "myCals.php"?>
+				</div>
 			</div>
 			
 			<div id="cal" class="col-xs-10">
