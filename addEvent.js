@@ -15,7 +15,8 @@ $(window).load(function(){
 	});
 
 	$('#eventSubmit').click(function(){
-		var ecreator = $('#session_username').text();
+		//var ecreator = $('#session_username').text();
+		var ecreator = "cdeanwolf";
 		var ename = $('#eventName').val();
 		var emonth = eventDate.getMonth();
 		var eday = eventDate.getDate();
