@@ -14,13 +14,24 @@ $(document).ready(function() {
 				success: function(rtnData){
 					if (rtnData.success) {
 						username = rtnData.msg;
-						alert(JSON.stringify(rtnData));
-
-						//$.each(rtnData.data, function(idx, obj){ 
-						//	$.each(obj, function(key, value){
-						//		alert(key + ": " + value);
-						//	});
-						//});
+						$.each(rtnData[0], function(idx, obj){ 
+							$.each(obj, function(key, value){ 
+								if (key =="Date") {
+                                    var cell = value;
+                                }
+								var name;
+								var start;
+								
+								if (key == "name") {
+                                    name = value;
+                                } if (key == "start") {
+                                    start = value;
+                                }
+								var event = "<li>" + start + " " + name + "</li>";
+								$(cell).append(event);
+								alert(key + ": " + value);
+							});
+						});
 						
 						//show logout button and hide others
 						$("#loginButton").hide();
