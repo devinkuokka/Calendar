@@ -4,14 +4,14 @@ $(window).load(function(){
 		$("#addEvent").modal("show");
 		var cellId = ($(this).closest('td').attr('id')).split('.');
 		
+		var year = cellId[0];
 		var month = ("0" + cellId[1]).slice(-2);
 		var day = ("0" + cellId[2]).slice(-2);
-
-		cellDate = cellId[0] + "-" + month + "-" + day;
-		eventDate = new Date(cellId[0], month, day);
+	
+		cellDate = year + "-" + month + "-" + day;
+		eventDate = new Date(year, month, day);
 		
-		$("#eventDate").attr("value", cellDate);;
-		
+		$("#eventDate").attr("value", cellDate);;	
 	});
 
 	$('#eventSubmit').click(function(){
@@ -29,11 +29,10 @@ $(window).load(function(){
         } else {
 			$.ajax({
 				type: "POST",
-				url: "addEventScript.php", //This is the current doc
+				url: "addEventScript.php",
 				//dataType:'json', // add json datatype to get json
 				data: { creator: ecreator, cat: ecat, name: ename, day: eday, month: emonth, year: eyear,
 						start: estart, end: eend},
-				//data: {data: userVal},
 				success: function(msg){
 					alert(msg);
 				}

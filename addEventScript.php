@@ -1,6 +1,4 @@
 <?php
-
-
 	if (!isset($_POST['creator']) || !isset($_POST['cat']) || !isset($_POST['name']) || 
 		!isset($_POST['day']) || !isset($_POST['month']) || !isset($_POST['year']) ||
 		!isset($_POST['start']) || !isset($_POST['end'])) {
