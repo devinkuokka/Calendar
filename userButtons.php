@@ -82,6 +82,7 @@
 </div>
 
 
+
 <!-- logout button that triggers logout modal -->
 <button id="logoutButton" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#logoutModal" style="display:none">Logout</button>
 
