@@ -1,16 +1,21 @@
 <?php
 	
-	if (!isset ($_POST['username']) || !isset ($_POST['password']) || !isset ($_POST['confirmPassword'])) {
-		echo "Please enter all fields";
-		exit;
-	}
+	//if (!isset ($_POST['username']) || !isset ($_POST['password']) || !isset ($_POST['confirmPassword'])) {
+	//	echo "Please enter all fields";
+	//	exit;
+	//}
 	
 	$username = $_POST['username'];
+	$password = $_POST['password'];
+	
+	if (strlen($username) < 4 || strlen($password) < 4) {
+		echo "Please enter a valid username and password";
+		exit;
+	}
 	$passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
 	$confirmPassword = $_POST['confirmPassword'];
 	
 	//check that username is valid
-	
 	
 	//check that password and confirm password match
 	if (!password_verify($confirmPassword, $passwordHash)) {
