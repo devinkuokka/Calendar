@@ -61,6 +61,21 @@ $(document).ready(function() {
 	});
 	
 	$("#logoutSubmit").click(function(){
-		//destroy session
+		$.ajax({
+			type: "POST",
+			url: "logout.php",
+			dataType:'json', 
+			success: function(data){
+				var jsonData = $.parseJSON(data);
+				if (jsonData.success) {
+					alert(jsonData.msg);
+					
+					//show logout button and hide others
+					$("#loginButton").show();
+					$("#signupButton").show();
+					$("#logoutButton").hide();
+				} 
+			}
+		});
 	});
 });
