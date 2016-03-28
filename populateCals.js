@@ -13,6 +13,8 @@ var monthDays;
 var months;
 var view;
 
+var username;
+
 function setInitial(){
 	mainDate = new Date();
 	currentDate = new Date();

@@ -14,7 +14,7 @@ $(document).ready(function() {
 				success: function(data){
 					var jsonData = $.parseJSON(data);
 					if (jsonData.success) {
-						alert (jsonData.msg);
+						username = jsonData.msg;
                     } else {
 						alert(jsonData.msg);
 					}
@@ -41,7 +41,7 @@ $(document).ready(function() {
 				success: function(data){
 					var jsonData = $.parseJSON(data);
 					if (jsonData.success) {
-						alert (jsonData.msg);
+						username = jsonData.msg;
                     } else {
 						alert(jsonData.msg);
 					}
