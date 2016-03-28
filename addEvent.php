@@ -25,6 +25,7 @@
 							<input type="time" class="form-control" id="eventEndTime" required>
 							<select id="eventCat">
 								<option value="Personal">Personal</option>
+								<!-- include other possible cal cat's -->
 							</select>
 						</div>
 					</div>
