@@ -26,7 +26,7 @@
 			</div>
 			
 			<div id="title" class="col-xs-4 text-center">
-				<h3 id="monthName"></h3>
+				<h3><strong id="monthName"></strong></h3>
 			</div>
 
 			<div id="userButtons" class="col-xs-3 text-right">
@@ -40,6 +40,8 @@
 				<div id="littleCal" class="row">
 					<?php require_once "navMonthly.html"?>
 				</div>
+				
+				<div class="row"><br></div><!--blank-->
 				
 				<div id="myCals" class="row">
 					<?php require_once "myCals.php"?>
