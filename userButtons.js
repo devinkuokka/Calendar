@@ -16,11 +16,11 @@ $(document).ready(function() {
 						username = rtnData.msg;
 						alert(JSON.stringify(rtnData));
 
-						//$.each(rtnData, function(idx, obj){ 
-						//	$.each(obj, function(key, value){
-						//		alert(key + ": " + value);
-						//	});
-						//});
+						$.each(rtnData, function(idx, obj){ 
+							$.each(obj, function(key, value){
+								alert(key + ": " + value);
+							});
+						});
 						
 						//show logout button and hide others
 						$("#loginButton").hide();

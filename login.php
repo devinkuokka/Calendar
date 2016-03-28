@@ -1,4 +1,7 @@
 <?php
+	error_reporting(-1);
+	ini_set('display_errors', 'On');
+	
 	session_start();
 	
 	$previous_ua = @$_SESSION['useragent'];
@@ -60,10 +63,6 @@
 	//		"msg" => $username
 	//));
 	
-	$myArray = array(
-		"success" => true,
-		"msg" => $username,
-		);
 	
 	//Display events as soon as they log in
 	
@@ -79,26 +78,35 @@
 		exit;
 	}
 	
-	$result = $showEvent -> execute();
+	$showEvent -> execute();
 	$showEvent -> bind_result($name, $cat, $date, $start);
-	//$showEvent -> fetch();
 	
-    while($row = mysqli_fetch_assoc($result, MYSQLI_ASSOC)){
-        array_push($myArray,$row);
-    }
-
-    //$json_array = json_encode($array);
-	//while ($showEvent -> fetchObject()) {
-	//	$eventArray = array (
-	//		"name" => $name;
-	//		"date" => $date,
-	//		"start" => $start,
-	//		"cat" => $cat
-	//	);
-	//	array_push ($myArray, $eventArray);
-	//};
+	$myArray = array(
+		"success" => true,
+		"msg" => $username,
+		);
+	
+	$array = array();
+	
+	while ($showEvent -> fetch()) {
+		//array_push ($myArray, array (
+		//	"name" => $name;
+		//	"date" => $date,
+		//	"start" => $start,
+		//	"cat" => $cat
+		//));
+		
+		$array[] = array(
+			"name" => $name,
+			"date" => $date,
+			"start" => $start,
+			"cat" => $cat
+		);
+	};
 	
 	$showEvent -> close();
+	
+	array_push($myArray,$array);
 	
 	echo json_encode($myArray);
 ?>
