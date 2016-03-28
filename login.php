@@ -1,10 +1,13 @@
 <?php
 
+	session_start();
+	
 	$username = $_POST['username'];			
 	$password = $_POST['password'];
 	
 	if (strlen($username) < 4 || strlen($password) < 4) {
 		echo "Please enter a valid username and password";
+		session_destroy();
 		exit;
 	}
 						
@@ -18,6 +21,7 @@
 	if (!$isUser) {
 		//echo "Select Query Prep Failed: ", $mysqli -> error;
 		echo "Invalid username and/or password";
+		session_destroy();
 		exit;
 	}
 				
@@ -29,10 +33,10 @@
 	//check that username and password are valid 
 	if (!password_verify($password, $passwordResult)) {
 		echo "Invalid username and/or password.";
+		session_destroy();
 		exit;
 	}
 				
 	$_SESSION['username'] = $username;				//creates and sets the session variable, username
-	echo $_SESSION['username'];
 	
 ?>
