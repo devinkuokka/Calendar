@@ -14,6 +14,13 @@ $(document).ready(function() {
 				success: function(rtnData){
 					if (rtnData.success) {
 						username = rtnData.msg;
+						alert(JSON.stringify(rtnData));
+
+						//$.each(rtnData, function(idx, obj){ 
+						//	$.each(obj, function(key, value){
+						//		alert(key + ": " + value);
+						//	});
+						//});
 						
 						//show logout button and hide others
 						$("#loginButton").hide();
