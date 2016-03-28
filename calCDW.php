@@ -24,7 +24,7 @@
 			<script src = "viewButtons.js"></script>
 			<div id="viewButtons" class="col-xs-3" >
 				<?php require_once "viewButtons.html"?>
-				<!--<script src="viewButtons.js"></script>-->
+				<script src="viewButtons.js"></script>
 			</div>
 			
 			<div id="title" class="col-xs-4 text-center">
