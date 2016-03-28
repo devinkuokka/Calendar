@@ -29,11 +29,49 @@
 			</div>
 			
 			<div class="modal-footer">
-				<button id="loginSubmit" type="button" class="btn btn-default" data-dismiss="modal">Login</button>
+				<button id="loginSubmit" type="submit" class="btn btn-default" data-dismiss="modal" value="Login"></button>
 			</div>
 		</div>
 	</div>
 </div>
+
+<?php
+//login script 
+	if ($_SERVER[$_REQUEST["loginSubmit"]] == "Login") { 	//checks that submit button was clicked
+		$username = $_REQUEST['loginUser'];			
+		$password = $_REQUEST['loginPass'];
+	  
+
+		//conect to mod3_newsWebsite as php_user
+		require 'php_database.php';
+		
+		$isUser = $mysqli -> prepare ("select username, password
+									  from users
+									  where username = '$username' and password = '$password'");
+	   
+		if (!$isUser) {
+			echo "Select Query Prep Failed: %s\n", $mysqli -> error;
+			exit;
+		}
+		
+		$isUser -> execute();
+		$isUser -> bind_result($usernameResult, $passwordResult);
+		$isUser -> fetch();
+		$isUser -> close();
+		
+		//check that username and password are valid 
+		if ($usernameResult == null || $passwordResult == null) {
+			printf(
+				"<p id = 'warning'>
+					Invalid Login. Please try again.
+			   </p>"
+			);
+			exit;
+		}
+
+		$_SESSION['user'] = $username;				    	
+	}
+?>
 
 				
 <!-- signup button that triggers signup modal-->
@@ -74,7 +112,7 @@
 			</div>
 			
 			<div class="modal-footer">
-				<button id="signupSubmit" type="button" class="btn btn-default" data-dismiss="modal">Create Account</button>
+				<button id="signupSubmit" type="submit" class="btn btn-default" data-dismiss="modal" value="Create Account"></button>
 			</div>
 		</div>
 	</div>
@@ -98,8 +136,9 @@
 			</div>
 			
 			<div class="modal-footer">
-				<button id="logoutSubmit" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+				<button id="logoutSubmit" type="submit" class="btn btn-default" data-dismiss="modal" value="Yes"></button>
 			</div>
 		</div>
 	</div>
 </div>
+
