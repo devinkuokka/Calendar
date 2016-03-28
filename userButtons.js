@@ -12,16 +12,15 @@ $(document).ready(function() {
 				dataType:'json',
 				data: { username: userVal, password: passVal},
 				success: function(rtnData){
-					var jsonData = rtnData;//$.parseJSON(rtnData);
-					if (jsonData.success) {
-						username = jsonData.msg;
+					if (rtnData.success) {
+						username = rtnData.msg;
 						
 						//show logout button and hide others
 						$("#loginButton").hide();
 						$("#signupButton").hide();
 						$("#logoutButton").show();
                     } else {
-						alert(jsonData.msg);
+						alert(rtnData.msg);
 					}
 				}
 			});
@@ -44,16 +43,15 @@ $(document).ready(function() {
 				dataType:'json', 
 				data: { username: userVal, password: passVal, confirmPassword: cpassVal},
 				success: function(rtnData){
-					var jsonData = rtnData;//JSON.parse(rtnData);
-					if (jsonData.success) {
-						username = jsonData.msg;
+					if (rtnData.success) {
+						username = rtnData.msg;
 						
 						//show logout button and hide others
 						$("#loginButton").hide();
 						$("#signupButton").hide();
 						$("#logoutButton").show();
                     } else {
-						alert(jsonData.msg);
+						alert(rtnData.msg);
 					}
 				}
 			});
@@ -65,10 +63,9 @@ $(document).ready(function() {
 			type: "POST",
 			url: "logout.php",
 			dataType:'json', 
-			success: function(data){
-				var jsonData = $.parseJSON(data);
-				if (jsonData.success) {
-					alert(jsonData.msg);
+			success: function(rtnData){
+				if (rtnData.success) {
+					alert(rtnData.msg);
 					
 					//show logout button and hide others
 					$("#loginButton").show();
