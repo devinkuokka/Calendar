@@ -83,7 +83,7 @@
 	
 	$myArray = array(
 		"success" => true,
-		"msg" => $username,
+		"msg" => $username
 		);
 	
 	$array = array();
