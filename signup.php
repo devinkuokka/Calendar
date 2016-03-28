@@ -1,15 +1,13 @@
 <?php
 	
-	//if (!isset ($_POST['username']) || !isset ($_POST['password']) || !isset ($_POST['confirmPassword'])) {
-	//	echo "Please enter all fields";
-	//	exit;
-	//}
+	session_start();
 	
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	
 	if (strlen($username) < 4 || strlen($password) < 4) {
 		echo "Please enter a valid username and password";
+		session_destroy();
 		exit;
 	}
 	$passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
@@ -20,6 +18,7 @@
 	//check that password and confirm password match
 	if (!password_verify($confirmPassword, $passwordHash)) {
 		echo "Passwords do not match. Please try again.";
+		session_destroy();
 		exit;
 	}
 	
@@ -32,6 +31,7 @@
 	
 	if (!$isNewUser) {
 		echo "Select Query Prep Failed: %s\n", $mysqli -> error;
+		session_destroy();
 		exit;
 	}
 	
@@ -59,8 +59,7 @@
 	$addUser -> execute();
 	$addUser -> close();
 	
+	 
 	$_SESSION['username'] = $username;				//creates and sets the session variable, username
-	
-	echo ($_SESSION['username']);
 	
 ?>

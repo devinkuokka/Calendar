@@ -8,13 +8,13 @@ $(document).ready(function() {
         } else {
 			$.ajax({
 				type: "POST",
-				url: "login.php", //This is the current doc
+				url: "login.php",
 				//dataType:'json', // add json datatype to get json
 				data: { username: userVal, password: passVal},
-				//data: {data: userVal},
 				success: function(msg){
-					alert(msg);
-					$('#session_username').text(msg);
+					if (msg != "") {
+                        alert(msg);
+                    }
 				}
 			});
 		}
@@ -32,13 +32,13 @@ $(document).ready(function() {
         } else {
 			$.ajax({
 				type: "POST",
-				url: "signup.php", //This is the current doc
+				url: "signup.php",
 				//dataType:'json', // add json datatype to get json
 				data: { username: userVal, password: passVal, confirmPassword: cpassVal},
-				//data: {data: userVal},
 				success: function(msg){
-					alert(msg);
-					$('#session_username').text(msg);
+					if (msg != "") {
+                        alert(msg);
+                    }
 				}
 			});
 		}
