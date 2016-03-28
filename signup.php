@@ -6,18 +6,25 @@
 	$password = $_POST['password'];
 	
 	if (strlen($username) < 4 || strlen($password) < 4) {
-		echo "Please enter a valid username and password";
+		echo json_encode(array(
+				"success" => false,
+				"msg" => "Please enter a valid username and/or password."
+		));
 		session_destroy();
 		exit;
 	}
 	$passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
 	$confirmPassword = $_POST['confirmPassword'];
 	
+	
 	//check that username is valid
 	
 	//check that password and confirm password match
 	if (!password_verify($confirmPassword, $passwordHash)) {
-		echo "Passwords do not match. Please try again.";
+		echo json_encode(array(
+				"success" => false,
+				"msg" => "Passwords do not match. Please try again."
+		));
 		session_destroy();
 		exit;
 	}
@@ -30,7 +37,10 @@
 									 where username = '$username'");
 	
 	if (!$isNewUser) {
-		echo "Select Query Prep Failed: %s\n", $mysqli -> error;
+		echo json_encode(array(
+				"success" => false,
+				"msg" => "Select Query Prep Failed: %s\n", $mysqli -> error
+		));
 		session_destroy();
 		exit;
 	}
@@ -40,10 +50,13 @@
 	$isNewUser -> fetch();
 	$isNewUser -> close();
 	
-	
 	//check that username is unique
 	if ($usernameResult !== null) {
-		echo "Username is already taken. Please try another.";
+		echo json_encode(array(
+				"success" => false,
+				"msg" => "Username is already taken. Please try another."
+		));
+		session_destroy();
 		exit;
 	} 
 	
@@ -51,7 +64,11 @@
 								   values ('$username', '$passwordHash')");
 	
 	if (!$addUser) {
-		echo "Insert Query Prep Failed: %s\n", $mysqli->error;
+		echo json_encode(array(
+				"success" => false,
+				"msg" => "Insert Query Prep Failed: %s\n", $mysqli -> error
+		));
+		sesion_destroy();
 		exit;
 	}
 	 
@@ -62,4 +79,8 @@
 	 
 	$_SESSION['username'] = $username;				//creates and sets the session variable, username
 	
+	echo json_encode(array(
+			"success" => true,
+			"msg" => $username
+	));
 ?>
