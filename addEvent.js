@@ -1,5 +1,4 @@
 $(window).load(function(){
-	var eventDate;
 	$('table td').on('click',function(){
 		$("#addEvent").modal("show");
 		var cellId = ($(this).closest('td').attr('id')).split('.');
@@ -9,7 +8,6 @@ $(window).load(function(){
 		var day = ("0" + cellId[2]).slice(-2);
 	
 		cellDate = year + "-" + month + "-" + day;
-		eventDate = new Date(year, month, day);
 		
 		$("#eventDate").attr("value", cellDate);;	
 	});
@@ -18,9 +16,7 @@ $(window).load(function(){
 		//var ecreator = $('#session_username').text();
 		var ecreator = "cdeanwolf";
 		var ename = $('#eventName').val();
-		var emonth = eventDate.getMonth();
-		var eday = eventDate.getDate();
-		var eyear = eventDate.getFullYear();
+		var edate = $('#eventDate').val();
 		var ecat = $('#eventCat').val();
 		var estart = $('#eventStartTime').val();
 		var eend = $('#eventEndTime').val();
@@ -32,8 +28,7 @@ $(window).load(function(){
 				type: "POST",
 				url: "addEventScript.php",
 				//dataType:'json', // add json datatype to get json
-				data: { creator: ecreator, cat: ecat, name: ename, day: eday, month: emonth, year: eyear,
-						start: estart, end: eend},
+				data: { creator: ecreator, cat: ecat, name: ename, date: edate, start: estart, end: eend },
 				success: function(msg){
 					alert(msg);
 				}
