@@ -35,45 +35,8 @@
 	</div>
 </div>
 
-<?php
-//login script 
-	if ($_SERVER[$_REQUEST["loginSubmit"]] == "Login") { 	//checks that submit button was clicked
-		$username = $_REQUEST['loginUser'];			
-		$password = $_REQUEST['loginPass'];
-	  
 
-		//conect to mod3_newsWebsite as php_user
-		require 'php_database.php';
 		
-		$isUser = $mysqli -> prepare ("select username, password
-									  from users
-									  where username = '$username' and password = '$password'");
-	   
-		if (!$isUser) {
-			echo "Select Query Prep Failed: %s\n", $mysqli -> error;
-			exit;
-		}
-		
-		$isUser -> execute();
-		$isUser -> bind_result($usernameResult, $passwordResult);
-		$isUser -> fetch();
-		$isUser -> close();
-		
-		//check that username and password are valid 
-		if ($usernameResult == null || $passwordResult == null) {
-			printf(
-				"<p id = 'warning'>
-					Invalid Login. Please try again.
-			   </p>"
-			);
-			exit;
-		}
-
-		$_SESSION['user'] = $username;				    	
-	}
-?>
-
-				
 <!-- signup button that triggers signup modal-->
 <button id="signupButton" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#signupModal">Sign Up</button>
 
