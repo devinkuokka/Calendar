@@ -23,6 +23,7 @@
 							<input id="eventDate" type="date" class="form-control" id="eventDate" required>
 							<input type="time" class="form-control" id="eventStartTime" required>
 							<input type="time" class="form-control" id="eventEndTime" required>
+							<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 							<select id="eventCat">
 								<option value="Personal">Personal</option>
 								<!-- include other possible cal cat's -->

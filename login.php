@@ -11,6 +11,8 @@
 		$_SESSION['useragent'] = $current_ua;
 	}
 	
+	$_SESSION['token'] = substr(md5(rand()), 0, 10); // generate a 10-character random string
+	
 	$username = $_POST['username'];			
 	$password = $_POST['password'];
 	
