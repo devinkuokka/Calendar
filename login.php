@@ -1,6 +1,6 @@
 <?php
 
-	if (!isset ($_POST['username']) && !isset ($_POST['password'])) {		//checks a username & password were entered
+	if (!isset ($_POST['username']) || !isset ($_POST['password'])) {		//checks a username & password were entered
 		echo "Please enter all fields";
 		exit;
 	}

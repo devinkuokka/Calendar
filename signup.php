@@ -6,7 +6,7 @@
 	}
 	
 	$username = $_POST['username'];
-	$passwordHash = password_hash($_POST['password'],PASSWORD_BCRYPT);
+	$passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
 	$confirmPassword = $_POST['confirmPassword'];
 	
 	//check that username is valid
