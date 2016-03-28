@@ -35,7 +35,7 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="myCalName">Name:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="myCalName" placeholder = "New Calendar name" maxlength = "255" autocomplete = "off" required autofocus>
+							<input type="text" class="form-control" id="myCalName" placeholder="New calendar" maxlength="255" autocomplete = "off" required autofocus>
 						</div>
 					</div>
 				</form>
