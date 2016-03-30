@@ -4,7 +4,8 @@ Devin Kuokka: 438169
 http://ec2-54-200-23-97.us-west-2.compute.amazonaws.com/~devin.kuokka/mod5/group/calCDW.php
 
 Creative Portion:
-- created a week view option
+- created a week view option which allows user to navigate to previous and next weeks any distance from current week
 - mini navigational calendar to view other months without leaving main calendar month
 - can add events from the mini nav cal, that print on the main cal
 - began working on multiple category calendars, but did not finish allowing filtering events shown
+- heavy focus on intuitive user use and navigation
